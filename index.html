@@ -582,6 +582,25 @@ footer{background:#0d0d0d;color:rgba(255,255,255,.65);padding:clamp(60px,8vw,100
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--green-600);box-shadow:0 0 0 3px rgba(46,94,62,.1)}
 .form-textarea{resize:vertical;min-height:clamp(100px,14vw,130px)}
 
+.map-wrap{
+  overflow:hidden;
+  border-radius:24px;
+  margin-top:24px;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start;
+}
+
+@media(max-width:900px){
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 /* ============================================================
    QUOTE PAGE
    ============================================================ */
@@ -1365,10 +1384,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
             <div class="c-icon" aria-hidden="true">🕐</div>
             <div><div class="c-label">Business Hours</div><div class="c-value">Mon–Fri 7AM–7PM · Sat 8AM–5PM</div></div>
           </div>
-          <div class="map-mock" role="img" aria-label="Map showing N.E Calgary, Alberta location">
-            <div class="map-pin" aria-hidden="true">📍</div>
-            <div class="map-label">Calgary, Alberta — Blossom Landscaping</div>
-          </div>
+         <div class="map-wrap">
+  <iframe
+    src="https://www.google.com/maps?q=Calgary,Alberta&output=embed"
+    width="100%"
+    height="320"
+    style="border:0;border-radius:24px;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
           <a href="https://www.google.com/maps/dir/?api=1&destination=Calgary,Alberta" target="_blank" rel="noopener" class="btn btn-primary btn-full" style="margin-top:14px;">🗺️ Get Directions</a>
         </div>
         <div class="form-card">
