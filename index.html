@@ -707,6 +707,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 </head>
 <body>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("OC-EpzJggLY9h7bqt");
+})();
+</script>
+
 <!-- LOADING SCREEN -->
 <div id="loading-screen" role="status" aria-label="Loading Blossom Landscaping website">
  <div class="loading-logo" aria-hidden="true">
@@ -2308,26 +2316,152 @@ function setWeather(){
    FORM HANDLERS
    ============================================================ */
 function handleContactForm(e){
+
   e.preventDefault();
-  const btn=document.getElementById('cSubmitBtn');
-  btn.textContent='✓ Message Sent! We\'ll be in touch soon.';
-  btn.style.background='var(--green-500)';btn.disabled=true;
-  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.disabled=false;},4000);
-}
-function handleQuoteForm(e){
-  e.preventDefault();
-  const name=document.getElementById('qName').value;
-  const email=document.getElementById('qEmail').value;
-  const phone=document.getElementById('qPhone').value;
-  const btn=document.getElementById('qSubmitBtn');
-  if(!name||!email||!phone){
-    btn.style.background='#c0392b';btn.textContent='⚠ Please fill in required fields';
-    setTimeout(()=>{btn.style.background='';btn.textContent='✦ Submit Free Quote Request';},2500);
+
+  const name = document.getElementById('cName').value;
+  const phone = document.getElementById('cPhone').value;
+  const email = document.getElementById('cEmail').value;
+
+  const btn = document.getElementById('cSubmitBtn');
+
+  if(!name || !phone || !email){
+
+    btn.style.background = '#c0392b';
+    btn.textContent = '⚠ Please fill required fields';
+
+    setTimeout(() => {
+      btn.style.background = '';
+      btn.textContent = 'Send Message →';
+    }, 2500);
+
     return;
   }
-  btn.textContent='✓ Quote Request Submitted!';btn.style.background='var(--green-500)';btn.disabled=true;
-  setTimeout(()=>{btn.textContent='✦ Submit Free Quote Request';btn.style.background='';btn.disabled=false;},5000);
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const params = {
+    name: name,
+    phone: phone,
+    email: email,
+    service: document.getElementById('cService').value,
+    message: document.getElementById('cMessage').value
+  };
+
+  emailjs.send(
+    'service_izi4o7a',
+    'template_hn61f4k',
+    params
+  )
+
+  .then(function () {
+
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--green-500)';
+
+    document.querySelector('#page-contact form').reset();
+
+  })
+
+  .catch(function (error) {
+
+    console.log(error);
+
+    btn.textContent = '⚠ Failed To Send';
+    btn.style.background = '#c0392b';
+
+  })
+
+  .finally(function () {
+
+    setTimeout(() => {
+
+      btn.disabled = false;
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+
+    }, 4000);
+
+  });
+
 }
+
+function handleQuoteForm(e){
+
+  e.preventDefault();
+
+  const name = document.getElementById('qName').value;
+  const email = document.getElementById('qEmail').value;
+  const phone = document.getElementById('qPhone').value;
+
+  const btn = document.getElementById('qSubmitBtn');
+
+  if(!name || !email || !phone){
+
+    btn.style.background = '#c0392b';
+    btn.textContent = '⚠ Please fill in required fields';
+
+    setTimeout(() => {
+      btn.style.background = '';
+      btn.textContent = '✦ Submit Free Quote Request';
+    }, 2500);
+
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const params = {
+    name: name,
+    email: email,
+    phone: phone,
+    address: document.getElementById('qAddr').value,
+    service: document.getElementById('qService').value,
+    budget: document.getElementById('qBudget').value,
+    date: document.getElementById('qDate').value,
+    message: document.getElementById('qDetails').value
+  };
+
+  emailjs.send(
+    'service_izi4o7a',
+    'template_hn61f4k',
+    params
+  )
+
+  .then(function () {
+
+    btn.textContent = '✓ Quote Request Sent!';
+    btn.style.background = 'var(--green-500)';
+
+    document.querySelector('#page-quote form').reset();
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = '✦ Submit Free Quote Request';
+      btn.style.background = '';
+    }, 4000);
+
+  })
+
+  .catch(function (error) {
+
+    console.log(error);
+
+    btn.textContent = '⚠ Failed To Send';
+    btn.style.background = '#c0392b';
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = '✦ Submit Free Quote Request';
+      btn.style.background = '';
+    }, 4000);
+
+  });
+
+}
+
 
 /* ============================================================
    INIT
