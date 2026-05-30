@@ -9,7 +9,15 @@
 <meta name="description" content="Calgary's premier landscaping company. Expert lawn care, snow removal, patio construction, retaining walls, artificial turf & fence installation. Serving Calgary, Airdrie, Chestermere & more. Free quotes!">
 <meta name="keywords" content="landscaping Calgary, lawn care Calgary, snow removal Calgary, patio construction Calgary, fence installation Calgary, artificial turf Calgary, retaining walls Calgary, Calgary landscaping company">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#2E5E3E">
 <link rel="canonical" href="https://www.blossomlandscaping.ca">
+<link rel="icon" type="image/x-icon" href="./images/favicon/favicon.ico">
+
+<link rel="icon" type="image/png" sizes="96x96" href="./images/favicon/favicon-96x96.png">
+
+<link rel="apple-touch-icon" href="./images/favicon/apple-touch-icon.png">
+
+<link rel="manifest" href="./images/favicon/site.webmanifest">
 <meta property="og:title" content="Blossom Landscaping & Maintenance Ltd. | Calgary's #1 Landscaping">
 <meta property="og:description" content="Premium landscaping services in Calgary. Lawn care, snow removal, patios, decks, retaining walls & more. Get your free quote today!">
 <meta property="og:url" content="https://www.blossomlandscaping.ca">
@@ -82,6 +90,13 @@ input,select,textarea{font-family:inherit}
   display:flex;align-items:center;justify-content:center;
   animation:logoPulse 1.8s ease-in-out infinite;margin-bottom:24px;overflow:hidden;
 }
+.loading-logo-img{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  display:block;
+  animation:loaderPulse 2s ease-in-out infinite;
+}
 .loading-logo svg{width:64px;height:64px}
 .loading-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--green-300);margin-bottom:28px;font-family:var(--font-body);font-weight:300}
 .loading-bar{width:180px;height:1px;background:rgba(255,255,255,.15);border-radius:1px;overflow:hidden}
@@ -148,6 +163,23 @@ input,select,textarea{font-family:inherit}
   position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);
   display:flex;align-items:center;transition:all .4s var(--ease);
   background:transparent;
+}
+
+/* LOGO */
+
+.site-logo{
+  width:44px;
+  height:44px;
+  object-fit:cover;
+  border-radius:50%;
+  display:block;
+}
+.nav-logo-mark{
+  width:44px;
+  height:44px;
+  overflow:hidden;
+  border-radius:50%;
+  flex-shrink:0;
 }
 #navbar.scrolled{
   background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
@@ -440,7 +472,17 @@ footer{background:#0d0d0d;color:rgba(255,255,255,.65);padding:clamp(60px,8vw,100
 @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.footer-grid{grid-template-columns:1fr}}
 .footer-logo-wrap{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:16px}
-.footer-logo-bg{width:44px;height:44px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.footer-logo-bg{
+  width:52px;
+  height:52px;
+  background:var(--white);
+  border-radius:50%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
 .footer-brand p{font-size:clamp(13px,1.4vw,14px);line-height:1.8;margin-bottom:22px;font-weight:300}
 .footer-social{display:flex;gap:8px}
 .social-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.55);transition:all .2s;cursor:pointer}
@@ -454,6 +496,12 @@ footer{background:#0d0d0d;color:rgba(255,255,255,.65);padding:clamp(60px,8vw,100
 .footer-hours{font-size:clamp(12.5px,1.3vw,13.5px);color:rgba(255,255,255,.5);line-height:2}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.06);margin-top:clamp(40px,6vw,70px);padding:clamp(18px,3vw,26px) clamp(16px,4vw,40px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;max-width:var(--container);margin-left:auto;margin-right:auto}
 .footer-bottom p{font-size:clamp(11.5px,1.3vw,13px);color:rgba(255,255,255,.35)}
+.footer-logo-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 
 /* ============================================================
    PAGE SYSTEM
@@ -481,6 +529,19 @@ footer{background:#0d0d0d;color:rgba(255,255,255,.65);padding:clamp(60px,8vw,100
 .val-item{display:flex;align-items:center;gap:10px;font-size:clamp(13.5px,1.4vw,14.5px);font-weight:500;color:var(--charcoal)}
 .val-dot{width:7px;height:7px;background:var(--green-500);border-radius:50%;flex-shrink:0}
 .about-actions{margin-top:clamp(20px,3vw,30px);display:flex;gap:12px;flex-wrap:wrap}
+
+.about-img{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+}
+
+.about-main-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 
 /* ============================================================
    GALLERY
@@ -648,16 +709,16 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 <!-- LOADING SCREEN -->
 <div id="loading-screen" role="status" aria-label="Loading Blossom Landscaping website">
-  <div class="loading-logo" aria-hidden="true">
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M10 60 Q40 80 70 60" stroke="#6abd3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      <path d="M28 38 Q18 20 30 12 Q42 20 32 38 Z" fill="#6abd3a"/>
-      <path d="M40 30 Q34 12 46 8 Q55 16 44 30 Z" fill="#4ea82b"/>
-      <line x1="30" y1="38" x2="36" y2="58" stroke="#4ea82b" stroke-width="2.5" stroke-linecap="round"/>
-      <text x="30" y="56" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#111" text-anchor="middle">BL</text>
-    </svg>
-  </div>
-  <div class="loading-label">Blossom Landscaping</div>
+ <div class="loading-logo" aria-hidden="true">
+
+  <img
+    src="./images/favicon/web-app-manifest-512x512.png"
+    alt="Blossom Landscaping Logo"
+    class="loading-logo-img"
+  >
+
+</div>
+  <div class="loading-label">Blossom Landscaping & Maintenance</div>
   <div class="loading-bar"><div class="loading-bar-fill"></div></div>
 </div>
 
@@ -672,16 +733,16 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
     <a class="nav-logo" onclick="showPage('home')" role="button" aria-label="Blossom Landscaping — Go to Home">
-      <div class="nav-logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 80 80" width="34" height="34" fill="none">
-          <path d="M10 60 Q40 80 70 60" stroke="#6abd3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M28 38 Q18 20 30 12 Q42 20 32 38 Z" fill="#6abd3a"/>
-          <path d="M40 30 Q34 12 46 8 Q55 16 44 30 Z" fill="#4ea82b"/>
-          <line x1="30" y1="38" x2="36" y2="58" stroke="#4ea82b" stroke-width="2.5" stroke-linecap="round"/>
-          <text x="30" y="56" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#111" text-anchor="middle">BL</text>
-        </svg>
-      </div>
-      <span class="nav-logo-name">Blossom Landscaping</span>
+     <div class="nav-logo-mark" aria-hidden="true">
+
+ <img
+  src="./images/favicon/web-app-manifest-512x512.png"
+  alt="Blossom Landscaping Logo"
+  class="site-logo"
+/>
+
+</div>
+      <span class="nav-logo-name">Blossom Landscaping & Maintenance</span>
     </a>
     <div class="nav-links" role="menubar">
       <a class="nav-link" onclick="showPage('home')" role="menuitem" tabindex="0">Home</a>
@@ -980,15 +1041,15 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo-wrap">
-          <div class="footer-logo-bg" aria-hidden="true">
-            <svg viewBox="0 0 80 80" width="32" height="32" fill="none">
-              <path d="M10 60 Q40 80 70 60" stroke="#6abd3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M28 38 Q18 20 30 12 Q42 20 32 38 Z" fill="#6abd3a"/>
-              <path d="M40 30 Q34 12 46 8 Q55 16 44 30 Z" fill="#4ea82b"/>
-              <line x1="30" y1="38" x2="36" y2="58" stroke="#4ea82b" stroke-width="2.5" stroke-linecap="round"/>
-              <text x="30" y="56" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#111" text-anchor="middle">BL</text>
-            </svg>
-          </div>
+        <div class="footer-logo-bg" aria-hidden="true">
+
+  <img
+    src="./images/favicon/web-app-manifest-512x512.png"
+    alt="Blossom Landscaping Logo"
+    class="footer-logo-img"
+  >
+
+</div>
           Blossom Landscaping & Maintenance Ltd.
         </div>
         <p>Calgary's premium landscaping and outdoor living company. Serving Calgary, Airdrie, Chestermere, Okotoks, Cochrane, and High River since 2014.</p>
@@ -1062,7 +1123,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <section class="section-pad bg-white" aria-labelledby="about-story-heading">
     <div class="container">
       <div class="about-grid">
-        <div class="about-img reveal" aria-label="Blossom Landscaping team at work" role="img">🌿
+     <div class="about-img reveal" aria-label="Blossom Landscaping team at work" role="img">
+
+  <img
+    src="https://res.cloudinary.com/dip1fgo9c/image/upload/f_auto,q_auto/v1780125271/About_ecjwnm.jpg"
+    alt="Blossom Landscaping Team"
+    loading="lazy"
+    class="about-main-img"
+  >
           <div class="about-badge">
             <div class="num">4+</div>
             <div class="lbl">Years in Calgary</div>
@@ -1098,16 +1166,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div class="why-grid" id="valuesGrid"></div>
     </div>
   </section>
-  <section class="section-pad bg-white" aria-labelledby="team-heading">
-    <div class="container">
-      <div class="text-center">
-        <div class="tag">Our Team</div>
-        <h2 class="section-title" id="team-heading">The Blossom Team</h2>
-        <p class="section-sub">A dedicated crew of landscaping professionals passionate about transforming Calgary outdoor spaces.</p>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(180px,22vw,240px),1fr));gap:clamp(16px,2.5vw,24px);" id="teamGrid"></div>
-    </div>
-  </section>
+
   <section class="cta-section">
     <h2>Ready to Work With Calgary's Best?</h2>
     <p>Get your free quote today and discover why hundreds of Calgary homeowners choose Blossom.</p>
@@ -1675,7 +1734,7 @@ const BLOG=[
 {
   cat:'Garden Tips',
 
-  image:'https://res.cloudinary.com/dip1fgo9c/image/upload/q_auto,f_auto/v1780118954/GardenDesiqn_apucm7.jpg',
+  image:'https://res.cloudinary.com/dip1fgo9c/image/upload/f_auto,q_auto/v1780125271/About_ecjwnm.jpg',
 
   title:'Best Perennial Plants That Survive Calgary Winters',
 
